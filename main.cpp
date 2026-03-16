@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     graph.showStats();
   }
 
-  SIMDDijkstra dijk(graph);
+  HWY_NAMESPACE::SIMDDijkstra dijk(graph);
 
   dijk.run({0, 1, 2, 3, 4, 5, 6, 7});
 

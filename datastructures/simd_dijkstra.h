@@ -8,11 +8,16 @@
 #include "priority_queue.h"
 #include "types.h"
 
+HWY_BEFORE_NAMESPACE();
+
+namespace HWY_NAMESPACE {
+namespace hn = hwy::HWY_NAMESPACE;
+
 class SIMDDijkstra {
 private:
   static constexpr HWY_FULL(uint32_t) d{};
   static constexpr size_t L = Lanes(d);
-  using Vec = hwy::N_AVX2::Vec<decltype(d)>;
+  using Vec = hn::Vec<decltype(d)>;
 
   const Graph &g;
   std::vector<Vec> dist;
@@ -124,3 +129,6 @@ public:
     printVec(updated, "updated");
   }
 };
+
+} // namespace HWY_NAMESPACE
+HWY_AFTER_NAMESPACE();
